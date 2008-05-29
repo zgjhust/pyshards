@@ -4,7 +4,7 @@ from djangoconf.shard.models import *
 from core.loader import *
 from core.sharded_session import *
 
-def createTestShards(IPs):
+def createTestShards(IPs, username, password):
     #Warning: This deletes existing shards
     ShardConf.objects.all().delete()
     shardId = 0
@@ -17,8 +17,8 @@ def createTestShards(IPs):
             s.current_MB = 0
             s.database = 'testshard%d' % x
             s.full = False
-            s.user = 'root'
-            s.password = 'xx'
+            s.user = username 
+            s.password = password 
             s.host = ip
             if pid != None:
                 s.pid = pid
@@ -62,7 +62,6 @@ if __name__ == '__main__':
            '192.168.0.205',
            '192.168.0.206',
            '192.168.0.207')
-    createTestShards( ips )
-     
+    createTestShards( ips, 'root', 'xx' )
     createTestDBs()
     createVirtualShards(100)
