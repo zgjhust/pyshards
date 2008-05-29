@@ -1,0 +1,81 @@
+Rebalancing is a big concern.  Adding new shards to the system would invalidate
+the hash lookup scheme as it currently uses a modulus based on the total number of 
+shards.  Lookups based on shardkey would no longer be valid unless all hashes 
+were recalculated after adding or dropping shards.
+
+Number of shards needs to be either a really large fixed number (then how to work
+with only a few DBs?) or (we need a strategy to deal with this).
+
+Like a hash table, the hash shard selection algorithm could be used to pick the 
+bucket, which would initially be a single shard.  As load increases (and we
+must watch for this in code), new shards could be dynamically added which point
+to the original.  We would end up with a linked list of shards in each bucket.
+
+
+ShardKey
+
+The ShardKey is a string that you provide for many (but not all) of the read and write 
+operations.  Think of it as a primary key for Shards. (Must not destroy the integrety of 
+the algorithm by adding or removing TopShards carelessly.)
+
+PyShards hashes the string to lookup the correct shard.
+
+From the very beginning it is best to consider rebalancing (resharding).  If you believe that
+you will need to reshard, you must persist the ShardKey along with every row you write to the
+database.  Rebalancing will involve moving a range of rows from one physical shard into two
+physical shards.  In order find the appropriate rows to move, PyShards will need the ShardKey.  
+PyShards does nothing to persist the ShardKey, this is the responsibility of the programmer.  
+It is highly recommended that you add an additional column to each and every row you will insert 
+into a shard called SHARD_KEY. (Future plan:  PyShards will provide a rebalancing function that 
+takes as input a list of tables, the shard to migrate, and the two new shards.  The rebalancing 
+funciton will assume the presense of a column called SHARD_KEY for each table name provided.)
+
+TERMS
+
+Shard (AKA Physical Shard)
+
+VShard (AKA Virtual Shard)
+
+Shard Bucket (Linked list of shards in a bucket)
+
+Shard Head (First Shard in ShardBucket)
+
+Inactive Shard (Second...n Shard in ShardBucket which is ready for use, but has not been
+activated because its capacity has not yet been needed.)
+
+Active Shard (Any physical Shard in use)
+
+VShard Group (Group of VShards pointing to a single Shard)
+
+PyShards assumes that there are developers who would like to enjoy the benefits of sharding without
+committing to a particular ORM scheme.  However, an ORM layer is a natural extension.  It is imagined
+that adapter classes could be written that extend ShardedSession for particular ORM solutions.
+(Ex: DjangoShardedSession, SqlAlchemyShardedSession)
+     
+     
+My original shard bucket theory was flawed.  If a single hash can point to more than a single shard, then how
+can you find the right record within the bucket for updating or deleting?
+
+B1         B2          B3
+userid     userid      userid
+j@one.com  j@two.com   j@three.com
+
+key is j@two.com
+
+Would have to hash and match: must hash to find right bucket and then
+lookup based on shardkey.  This means that shardkey must be written as a column in a place 
+where we can find it. 
+
+We could generate a key based on the initial value provided for inserts that the user would
+pass back....
+Or store this info for the user in a table somewhere....shardkey to index_to_correct shard in bucket
+
+Solution presents itself to me next morning: 
+Require auto int primary IDs for all tables and create ranges.  Either assign 1,000,000 per 
+shard in bucket, or automatically advance each table's starting ID to next available num.  This
+would involve querying each table from shard before to get max(id).
+ 
+
+
+
+     
