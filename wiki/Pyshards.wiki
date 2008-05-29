@@ -32,3 +32,4 @@ As it is early in the lifetime of this project, these terms are subject to chang
 || Active Shard || Any physical Shard in use ||
 || VShard Group || A list of VShards which point to a single physical Shard ||
 
+Are we done? No. Stay tuned for more info...
