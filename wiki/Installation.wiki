@@ -81,9 +81,7 @@ if __name__ == '__main__':
 
 You will need to provide one or more of your own server IP address to createTestShards.  Each box will need to have MySQL server installed.  Change the user and password to whatever credentials you use will be using to connect to these databases remotely.  Change the number of virtual shards if you like to a number greater than the number_of_IPs x 4. This script will create four shards per machine.  Is this an ideal configuration?  Probably not, but it simplifies testing.  Modify the script in any way you see fit to optimize for your environment.  Also note the warnings.  This script will blow away any previously saved shard and virtual shard configuration, so use it once and, if your results are good, then think twice before running it ever again.
 
-
-
-
+Are we done? No. Stay tuned for more instructions...
 
 
 
