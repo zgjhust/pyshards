@@ -14,3 +14,5 @@ Hold the following truths to be self evident.
 Imagine that you've created an auction site.  Users that want to create their own auctions do so by first registering with your system, providing a unique piece of identifying information.  This might be a system wide user name or the user's password.  Chances are, being a savvy web site developer, that you will keep a token of some type that represents this unique identifier in a web server session, and you will pass it back and forth to the client.  Assuming that you've chosen a nice hashable identifier, like a string, you now have a good candidate for the shard key.
 
 The shard key is a unique identifier that you will provide to a shard cursor any time you want to read, write or delete information pertaining to a particular user. 
+
+Are we done? No. Stay tuned for more notes...
