@@ -11,7 +11,7 @@ I found a lot of inspiration and good information about sharding on http://highs
 =Project Goals=
   * Provide a sharding library in Python
   * SQL based
-    * ORMs are nice, but experienced SQL hackers want to use their power SQL mojo.  As much as possible, this project aspires to allow them to do that.  SQL was designed, however, for use within a single database and as such there are certain constraints that must be imposed in order to construct SQL that makes sense across multiple databases.  This project aspires to keep the constraints to a minimum as unobtrusive as is possible.
+    * ORMs are nice, but experienced SQL hackers want to use their power SQL mojo.  As much as possible, this project aspires to allow them to do that.  SQL was designed, however, for use within a single database and as such there are certain constraints that must be imposed in order to construct SQL that makes sense across multiple databases.  This project aspires to keep the constraints to a minimum and as unobtrusive as is possible.
   * Provide out-of-the-box re-balancing (re-sharding) tools
     * Re-balancing is a big deal.  If you don't plan ahead, pain awaits you.  This project will incorporate balance planning into its core design.
   * Monitoring Tools
@@ -34,6 +34,4 @@ As it is early in the lifetime of this project, these terms are subject to chang
 =Installation=
 
 More details coming soon.
-
-
 
