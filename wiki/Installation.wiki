@@ -1,4 +1,4 @@
-#Getting and setting up Pyshards
+#summary Getting Pyshards and setting up
 
 === Get the source ===
 
