@@ -17,3 +17,26 @@ apt-get install mysql-server python-mysqldb python-django python-unit python-set
 Django is not strictly required, however, it is currently being used to store configuration information and alternative methods for storing this info has not been written.  The monitoring application will be based on the Django application, so it may be a firm requirement in the future.
 
 python-sqlalchemy is used for connection pooling.
+
+=== Create shardconf database ===
+
+  # Connect to MySQL using password you specified during installation.
+  # mysql> create database shardconf;
+
+=== Set up Django ===
+
+Start the Django test server.
+
+{{{
+cd pyshards-read-only/src/pyshards/djangoconf/
+python manage.py runserver
+}}}
+
+In other shell, run syncdb to install the database tables.  When prompted, provide
+authentication information to be used by the administrative application. (Create user,
+password, etc.)
+
+{{{
+cd pyshards-read-only/src/pyshards/djangoconf/
+python manage.py syncdb
+}}}
