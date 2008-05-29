@@ -2,7 +2,11 @@
 
 === Get the source ===
 
-A general release is not yet available.  Checkout from svn.  (See the Source tab)
+A general release is not yet available.  Checkout from svn.  
+
+{{{
+svn checkout http://pyshards.googlecode.com/svn/trunk/ pyshards-read-only
+}}}
 
 === Install needed libraries ===
 
@@ -25,10 +29,18 @@ python-sqlalchemy is used for connection pooling.
 
 === Set up Django ===
 
-Start the Django test server.
+Run syncdb to install the database tables.  When prompted, provide
+authentication information to be used by the administrative application. (Create user,
+password, etc.)
 
 {{{
 cd pyshards-read-only/src/pyshards/djangoconf/
+python manage.py syncdb
+}}}
+
+Start the Django test server.
+
+{{{
 python manage.py runserver
 }}}
 
@@ -40,3 +52,31 @@ password, etc.)
 cd pyshards-read-only/src/pyshards/djangoconf/
 python manage.py syncdb
 }}}
+
+Open a web browser and navigate to http://localhost:8000/admin/.  You should see the Django Site administration user interface and a few tables named Shard and VShard.  At this point you would normally need to figure out how many servers you will have available to act as physical shards, create the databases on each machine, and specify configuration parameters.  Then you would decide the total number of shards you will EVER need, and use that information to create VShard records.  
+
+There are a few utilities to assist with this job.  But first, lets review the goals of your system.  You want both scalability and performance, right? The main bottlenecks to performance in this kind of system are network (latency and bandwidth) and disk access.  You'll want your servers to be connected on a LAN via a Gigabit (or better) router.  The big problem that we're hoping to duck by Sharding in the first place is the disk access problem. First off, stripe a few drives using RAID0 if you have the option. Now you will want to size your shard to fit into available RAM on each machine.  Once your OS is loaded and running any software that will be running during normal operation, use the "free" command (or something similar) to determine your available memory in MB.  Write down this number.  When configuring a shard for this device, you'll want to set the CAPACITY_MB attribute to a number below the total available RAM.  I'd recommend 60%-80% of available RAM.  The goal is to keep the DB in memory so that the device NEVER hits swap space.
+
+Back to the tool: There is a utility that will create a series of test databases for initial testing based on a list of IP addresses that you provide.
+
+Navigate to the file and open it.
+
+{{{
+vim pyshards-read-only/src/pyshards/djangoconf/shard/utility.py
+}}}
+
+Note the section at the bottom:
+
+{{{
+if __name__ == '__main__': 
+    ips = ('192.168.0.201', 
+           '192.168.0.204', 
+           '192.168.0.205', 
+           '192.168.0.206', 
+           '192.168.0.207') 
+    createTestShards( ips )       
+    createTestDBs() 
+    createVirtualShards(100) 
+}}}
+
+You will need to provide one or more of your own server IP address.  Each box will need to have MySQL server installed.
