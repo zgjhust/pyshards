@@ -4,7 +4,7 @@
 
 Hold the following truths to be self evident.
 
-  * Remember: a Shard is a database, typically residing on different hosts
+  * Remember: a Shard is a database; each shard typically resides on a different host
   * Each Shard shall contain an identical schema
   * Object graphs may not span shards
     * Hierarchical, normalized schema is fine, but children may not refer to parents living in another shard or visa-versa.
