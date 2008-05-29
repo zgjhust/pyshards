@@ -1,0 +1,19 @@
+#Getting and setting up Pyshards
+
+=== Get the source ===
+
+A general release is not yet available.  Checkout from svn.  (See the Source tab)
+
+=== Install needed libraries ===
+
+Ubuntu/Debian users may use this script:
+
+{{{
+#!/bin/bash
+
+apt-get install mysql-server python-mysqldb python-django python-unit python-setuptools python-sqlalchemy
+}}}
+
+Django is not strictly required, however, it is currently being used to store configuration information and alternative methods for storing this info has not been written.  The monitoring application will be based on the Django application, so it may be a firm requirement in the future.
+
+python-sqlalchemy is used for connection pooling.
