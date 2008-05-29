@@ -25,7 +25,7 @@ def createTestShards(IPs, username, password):
             s.save()
             pid = s.id
             
-def createTestDBs():
+def createTestSchemas():
         shardconf = DjangoShardLoader()
         session = ShardedSession(shardconf)
         cursor = session.adminCursor()
@@ -55,13 +55,16 @@ def createVirtualShards(numOfVShards):
             v.id = vShardId = vShardId + 1
             v.pid = sh.id
             v.save()
-        
-if __name__ == '__main__':
+
+def demoSetup():
     ips = ('192.168.0.201',
            '192.168.0.204',
            '192.168.0.205',
            '192.168.0.206',
            '192.168.0.207')
     createTestShards( ips, 'root', 'xx' )
-    createTestDBs()
+    createTestSchemas()
     createVirtualShards(100)
+            
+if __name__ == '__main__':
+    demoSetup()
