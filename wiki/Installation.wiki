@@ -81,7 +81,20 @@ if __name__ == '__main__':
 
 You will need to provide one or more of your own server IP address to createTestShards.  Each box will need to have MySQL server installed.  Change the user and password to whatever credentials you use will be using to connect to these databases remotely.  Change the number of virtual shards if you like to a number greater than the number_of_IPs x 4. This script will create four shards per machine.  Is this an ideal configuration?  Probably not, but it simplifies testing.  Modify the script in any way you see fit to optimize for your environment.  Also note the warnings.  This script will blow away any previously saved shard and virtual shard configuration, so use it once and, if your results are good, then think twice before running it ever again.
 
+Note that if you use pydev and eclipse, project files will be included with the checkout and you may run this script from within the IDE.  Otherwise, you'll need to add the project to the syspath.  Run the python interpreter and type the following.
+
+{{{
+>>> import sys
+>>> sys.path.append("/your_path_to_checkout_dir/pyshards-read-only/src/pyshards")
+>>> from djangoconf.shard.utility import demoSetup
+>>> demoSetup()
+}}}
+
+If all went well your system will now be configured for use and you should be able to run the unit test programs.  As a sanity check, open a browser and make sure that you see something similar to the following.
+
+[http://www.flickr.com/photos/27165790@N06/2534377509/ http://farm3.static.flickr.com/2378/2534377509_d4f60d9c4c_o.png]
+
+[http://www.flickr.com/photos/27165790@N06/2534380245/ http://farm4.static.flickr.com/3159/2534380245_91df613dcb_o.png]
+
 Are we done? No. Stay tuned for more instructions...
-
-
 
