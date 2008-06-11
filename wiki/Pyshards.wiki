@@ -32,4 +32,9 @@ As it is early in the lifetime of this project, these terms are subject to chang
 || Active Shard || Any physical Shard in use ||
 || VShard Group || A list of VShards which point to a single physical Shard ||
 
+
+===Why MySQL?==
+
+MySQL is easy to use and its fast.  I find it easiest to pick a set of technologies and work with them initially rather than putting everything behind generic interfaces.  If we want to add support for other dbs later (postgresql) it will not be difficult.  Injecting interfaces is quite a bit easier to do after the fact in Python than it is in most compiled languages.  Feel strongly that we should use postgresql?  Post a comment and we'll weigh the pros and cons.
+
 Are we done? No. Stay tuned for more info...
