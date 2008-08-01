@@ -44,14 +44,6 @@ Start the Django test server.
 python manage.py runserver
 }}}
 
-In other shell, run syncdb to install the database tables.  When prompted, provide
-authentication information to be used by the administrative application. (Create user,
-password, etc.)
-
-{{{
-cd pyshards-read-only/src/pyshards/djangoconf/
-python manage.py syncdb
-}}}
 
 Open a web browser and navigate to http://localhost:8000/admin/.  You should see the Django Site administration user interface and a few tables named Shard and VShard.  At this point you would normally need to figure out how many servers you will have available to act as physical shards, create the databases on each machine, and specify configuration parameters.  Then you would decide the total number of shards you will EVER need, and use that information to create VShard records.  
 
