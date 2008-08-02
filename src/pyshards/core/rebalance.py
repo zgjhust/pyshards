@@ -76,6 +76,9 @@ if __name__ == '__main__':
     shardconf = DjangoShardLoader()
     session = ShardedSession(shardconf)
     
+    session.adminCursor().executeAll('delete from throwawayshard.user')
+    session.adminCursor().executeAll('delete from throwawayshard.userComment')
+    
     sc = ShardConf()
     sc.id = 10000
     sc.capacity_MB = 100

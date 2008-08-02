@@ -65,7 +65,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'djangoconf.urls'
 
+# Change to your template dir, or better yet, create a symbolic link to the location listed here.
 TEMPLATE_DIRS = (
+    '/opt/pyshards/web/templates',
 )
 
 INSTALLED_APPS = (
