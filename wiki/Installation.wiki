@@ -95,7 +95,7 @@ The tests currently use a common base class which creates a number of user recor
 The first time you run either test_sizecheck.py or test_virtual.py, you'll see a lot of print lines describing which virtual shard and shard was used for each insert.  You may also watch the djangoconf webapp (refresh often) to see the databases fill with data.
 
 
- _The django webapp imports the pyshards library, so you'll need to have it on your python   path.  For my convenience, I just created a symbolic link to my working pyshards root directory from /usr/lib/python2.5/site-packages/ to make sure the lib is always accessible to me._
+ _The django webapp imports the pyshards library, so you'll need to have it on your python   path.  For my convenience, I created a symbolic link to my working pyshards root directory from /usr/lib/python2.5/site-packages/ to make the lib accessible to the webapp and the command line interpreter._
 
 
 
