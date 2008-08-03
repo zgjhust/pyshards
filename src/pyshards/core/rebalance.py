@@ -1,7 +1,7 @@
 # Copyright (C) 2008 Devin Venable 
 import djangoconf.shard.django_standalone_helper
 from djangoconf.shard.models import *
-from loader import *
+from djangoconf.loader import *
 from sharded_session import ShardedSession
 from shard import Shard
 
