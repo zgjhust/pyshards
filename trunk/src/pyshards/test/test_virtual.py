@@ -4,7 +4,7 @@ import string, random
 from djangoconf.shard import django_standalone_helper 
 from core.sharded_session import ShardedSession
 from core.sharded_session import ShardCursor
-from core.loader import DjangoVShardLoader 
+from djangoconf.loader import DjangoVShardLoader 
 from test_base import TestBase 
 import timeit
 

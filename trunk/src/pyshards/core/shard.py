@@ -3,13 +3,14 @@ import MySQLdb
 import pooling
 
 class Shard:
-    def __init__(self, id, user, password, host, database, capacity_MB, full, observers = None ):
+    def __init__(self, id, user, password, host, database, capacity_MB, current_MB, full, observers = None ):
         self.id = id 
         self.user = user
         self.password = password
         self.host = host
         self.database = database 
         self.capacity_MB = capacity_MB
+        self.current_MB = current_MB
         self.__full = full
         self.next = None
         self.observers = observers
@@ -118,6 +119,7 @@ class Shard:
         result  = cursor.fetchone()
         if result != None:
            size = result[0]
+           self.current_MB = size
            if size > self.capacity_MB:
                self.setFull(True)
                #print "Shard configured capacity reached"

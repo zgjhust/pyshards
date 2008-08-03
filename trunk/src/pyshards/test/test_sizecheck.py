@@ -2,8 +2,8 @@
 import unittest
 import string, random
 from djangoconf.shard import django_standalone_helper 
-from core.sharded_session import ShardedSession
-from core.sharded_session import ShardCursor
+from pyshards.core.sharded_session import ShardedSession
+from pyshards.core.sharded_session import ShardCursor
 from test_base import TestBase 
 import timeit
 
@@ -12,6 +12,7 @@ class TestSizeCheck(TestBase):
         
     def testExceedSize(self):
         session = ShardedSession(self.shardconf)
+        self.session = session
         
         # modify configuration: reduce capacity for this test and check often
         for shard in session.shards:

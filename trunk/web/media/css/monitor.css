@@ -1,0 +1,27 @@
+body, td, input, textarea, select {
+	font-family:arial,sans-serif;
+	font-size: 95%;	
+}
+
+body {
+	height: 100%;
+}
+
+table.nodeconf  {
+	border: 1px solid;
+	margin-bottom: 2em;
+	margin-right: 1em;
+}
+
+.nodeconf td {
+	//border: 1px solid #D6DDE6;
+	text-align: right;
+	padding: 0.2em;
+}
+
+.propname {
+	//background-color: #B0C4DE;	
+	//color: #33517A;
+	padding: 0.4em 0 0.3em 0;
+	border: 1px solid #789AC6;
+}

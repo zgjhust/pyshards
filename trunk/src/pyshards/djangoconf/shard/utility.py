@@ -1,7 +1,7 @@
 # Copyright (C) 2008 Devin Venable 
 import django_standalone_helper
 from djangoconf.shard.models import *
-from core.loader import *
+from djangoconf.loader import *
 from core.sharded_session import *
 
 def createTestShards(IPs, username, password):
@@ -59,9 +59,7 @@ def createVirtualShards(numOfVShards):
 def demoSetup():
     ips = ('192.168.0.201',
            '192.168.0.204',
-           '192.168.0.205',
-           '192.168.0.206',
-           '192.168.0.207')
+           '192.168.0.205')
     createTestShards( ips, 'root', 'xx' )
     createTestSchemas()
     createVirtualShards(100)
