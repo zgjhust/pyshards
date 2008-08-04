@@ -13,19 +13,17 @@ class TestBasicConnection(unittest.TestCase):
         
     def __repeatConnectionSeq(self): 
         
-        conn = MySQLdb.connect (host = '192.168.0.201',
+        conn = MySQLdb.connect (host = '192.168.0.206',
                    user = 'root',
                    passwd = 'xx',
-                   db = 'testshard')
+                   db = 'testshard1')
         
         cur = conn.cursor()
-        cur.execute('delete from user_comment')
-        cur.execute('delete from user')
         cur.execute('insert into user (userid, firstName, lastName) values ("test","test","test")')
         cur.execute('insert into user (userid, firstName, lastName) values ("test","two","two")')
         cur.execute('select * from user')
         res = cur.fetchall()
-        self.assert_(len(res) == 2)
+        self.assert_(len(res) > 2)
         cur.close()
         conn.commit()
         conn.close()
