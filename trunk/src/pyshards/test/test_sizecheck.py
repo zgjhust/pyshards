@@ -17,7 +17,7 @@ class TestSizeCheck(TestBase):
         # modify configuration: reduce capacity for this test and check often
         for shard in session.shards:
             while shard != None:
-                shard.capacity_MB = 1
+                #shard.capacity_MB = 1  --- let's go with what the DB says
                 shard.SIZE_CHECK_INTERVAL = 100
                 shard = shard.next
       

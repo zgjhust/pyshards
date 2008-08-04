@@ -20,8 +20,8 @@ class TestBase(unittest.TestCase):
         last = self.__randString()
         return {'first': first,'last': last,'email': '%s@%s.com' % (first, last) }
 
-    def __fillerString(self):
-        return ''.join([random.choice(string.letters) for x in xrange(1000)])
+    def __fillerString(self, size):
+        return ''.join([random.choice(string.letters) for x in xrange(size)])
    
     def recreateUserTestTables(self):
         warnings.filterwarnings("ignore", "Unknown table.*")
@@ -44,7 +44,7 @@ class TestBase(unittest.TestCase):
                  , validated BOOLEAN
                  , suspended BOOLEAN
                  , PRIMARY KEY (id)
-            ) ENGINE=InnoDB 
+            ) 
             ''')
         cursor.executeAll(''' 
             CREATE TABLE user_comment (
@@ -52,11 +52,15 @@ class TestBase(unittest.TestCase):
                  , VIRTUAL_SHARD INT NULL
                  , user_id INT NOT NULL
                  , comment TEXT NOT NULL
+                 , keyword TEXT NOT NULL
                  , PRIMARY KEY (id)
                  , INDEX (user_id)
                  , CONSTRAINT FK_user_comment_1 FOREIGN KEY (user_id)
                               REFERENCES user (id)
-            ) ENGINE=InnoDB 
+            )              
+            ''')
+        cursor.executeAll('''
+            alter table user_comment add fulltext (keyword)
             ''')
     
     def loadOrCreateData(self, pickleName):
@@ -74,10 +78,13 @@ class TestBase(unittest.TestCase):
             
         self.recreateUserTestTables()
         keepers = [] 
-        for i in range(0,10000): 
+        for i in range(0,50000): 
             
             # insert random user and comment
             user = self.__makeBogusUserData()
+            
+    
+            
             cursor = self.session.insertCursor(user['email'])
             id = cursor.insert('user', '''
                                insert into user (userid, firstName, lastName, validated, suspended )
@@ -85,13 +92,17 @@ class TestBase(unittest.TestCase):
                                ''', (user['email'], user['first'], user['last'] ))
                 
             #print 'id of user record is %d' % id
-                    
+            filler = self.__fillerString(1000)
+            keyword = self.__fillerString(4)
+            if i % 100 == 0:
+                keyword = keyword + ' elephant ' 
+                      
             cursor.insert('user', '''
-                          insert into user_comment (user_id, comment)
-                          values (%s, %s)
-                          ''', (id, self.__fillerString()))
+                          insert into user_comment (user_id, comment, keyword)
+                          values (%s, %s, %s)
+                          ''', (id, filler, keyword))
                 
-            if i % 1000:
+            if i % 1000 == 0:
                 keepers.append(user)
             
         pickle.dump(keepers, dbfile)
