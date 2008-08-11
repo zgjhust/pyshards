@@ -21,8 +21,9 @@ class Shard:
 
     def setFull(self, full):
         self.__full = full
-        for o in self.observers:
-            o.notifyFull(full)
+        if self.observers != None:
+            for o in self.observers:
+                o.notifyFull(full)
 
     def full(self):
         return self.__full
@@ -125,6 +126,7 @@ class Shard:
                #print "Shard configured capacity reached"
            else:
                self.setFull(False)
-           for o in self.observers:
-               o.notifyShardSize(size)
+           if self.observers != None:
+               for o in self.observers:
+                   o.notifyShardSize(size)
         cursor.close ()

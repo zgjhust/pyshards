@@ -1,5 +1,5 @@
 # Copyright (C) 2008 Devin Venable 
-from djangoconf.shard.models import * 
+from pyshards.djangoconf.shard.models import * 
 from pyshards.core.shard import Shard
 import string
 
