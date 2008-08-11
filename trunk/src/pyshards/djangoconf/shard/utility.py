@@ -58,8 +58,8 @@ def createVirtualShards(numOfVShards):
 
 def demoSetup():
     ips = ('192.168.0.201',
-           '192.168.0.204',
-           '192.168.0.205')
+           '192.168.0.206',
+           '192.168.0.207')
     createTestShards( ips, 'root', 'xx' )
     createTestSchemas()
     createVirtualShards(100)

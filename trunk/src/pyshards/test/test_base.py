@@ -78,7 +78,7 @@ class TestBase(unittest.TestCase):
             
         self.recreateUserTestTables()
         keepers = [] 
-        for i in range(0,50000): 
+        for i in range(0,5000000): 
             
             # insert random user and comment
             user = self.__makeBogusUserData()
@@ -102,8 +102,8 @@ class TestBase(unittest.TestCase):
                           values (%s, %s, %s)
                           ''', (id, filler, keyword))
                 
-            if i % 1000 == 0:
-                keepers.append(user)
+            #if i % 1000 == 0:
+            #    keepers.append(user)
             
         pickle.dump(keepers, dbfile)
         dbfile.close()

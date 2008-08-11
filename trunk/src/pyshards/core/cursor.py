@@ -56,15 +56,18 @@ class AdminCursor(BaseCursor):
                 
                 try:
                     self._execute(shard, sql, args, False, useDB)
+                 
                 except:
-                    ''' This is here because of Unknown table warnings (exceptions) that are raised
+                    '''
+                    This is here because of Unknown table warnings (exceptions) that are raised
                     when "drop table if exists" type queries are executed.  Others have reported
                     this strange behavior and some have said the problem can be avoided by filtering
                     out the warning (see below).  I had no such luck.  For now, this is unresolved 
                     and remains a TODO. 
                     warnings.filterwarnings("ignore", "Unknown table.*")
-                    '''
-                    print 'TODO - fix or find better workaround for "unknown table" issue in MySQLdb' 
+                    print 'TODO - fix or find better workaround for "unknown table" issue in MySQLdb'
+                    ''' 
+
                 shard = shard.next
                 
 class ShardInsertCursor(BaseCursor):
@@ -87,6 +90,9 @@ class ShardInsertCursor(BaseCursor):
 
     def delete(self, query, args=None):
         return self._execute(self._shard, sql, args)
+    
+    def close(self):
+        []
     
 class ShardCursor(BaseCursor):
 

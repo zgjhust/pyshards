@@ -58,7 +58,7 @@ class ShardedSession:
             
         
     def close(self):
-        raise NotImplementedError 
+        [] 
         
         
         
