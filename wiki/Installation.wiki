@@ -86,7 +86,6 @@ If all went well your system will now be configured for use and you should be ab
 
 [http://www.flickr.com/photos/27165790@N06/2534377509/ http://farm3.static.flickr.com/2378/2534377509_d4f60d9c4c_o.png]
 
-[http://www.flickr.com/photos/27165790@N06/2534380245/ http://farm4.static.flickr.com/3159/2534380245_91df613dcb_o.png]
 
 At this point we're ready to test.  A few unit tests have been started and can be found under the test directory.  These are functional tests really, but I'm using the pyunit framework nonetheless.  I do throw in a few asserts just to confirm that all is proceeding according to plan. 
 
