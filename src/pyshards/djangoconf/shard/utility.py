@@ -65,4 +65,5 @@ def demoSetup():
     createVirtualShards(100)
             
 if __name__ == '__main__':
-    demoSetup()
+    #demoSetup()
+    createVirtualShards(50)

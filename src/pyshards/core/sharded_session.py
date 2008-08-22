@@ -18,8 +18,8 @@ class ShardedSession:
         return ShardInsertCursor(self, shardkey) 
 
     def adminCursor(self):
-        return AdminCursor(self) 
-
+        return AdminCursor(self)
+    
     def allCursor(self):
         return AllCursor(self) 
                              
@@ -28,6 +28,14 @@ class ShardedSession:
     
     def getShardForQuery(self, shardkey):
         return self.getShardByKey(shardkey, False)
+
+    def getShardByVirtualId(self, virtualId):
+        if self.vshards == None:
+            raise 'Virtual ID passed but none defined'
+        
+        return self.shardsMap[self.vshards[virtualId]]
+            
+        
         
     def getShardByKey(self, shardkey, insertOper):
         idx = 0

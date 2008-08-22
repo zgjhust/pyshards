@@ -7,10 +7,10 @@ class ShardConf(models.Model):
     capacity_MB = models.IntegerField(null=True, blank=True)
     current_MB = models.IntegerField(null=True, blank=True)
     full = models.BooleanField(null=True)
-    user = models.CharField(null=True,maxlength=100)
-    password = models.CharField(null=True,maxlength=100)
-    host = models.CharField(null=True,maxlength=100)
-    database = models.CharField(null=True,maxlength=100)
+    user = models.CharField(null=True,max_length=100)
+    password = models.CharField(null=True,max_length=100)
+    host = models.CharField(null=True,max_length=100)
+    database = models.CharField(null=True,max_length=100)
     def __str__(self):
         return self.host 
     def notifyFull(self, full):
