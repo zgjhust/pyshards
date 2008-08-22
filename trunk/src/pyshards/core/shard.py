@@ -81,7 +81,8 @@ class Shard:
             connection = pooling.mysql.connect(host = self.host,
                        user = self.user,
                        passwd = self.password,
-                       db = self.database)
+                       db = self.database,
+                       use_unicode=True)
         else:
             print 'host %s, user %s, pass %s' % (self.host, self.user, self.password)  
             connection = pooling.mysql.connect(host = self.host,

@@ -20,7 +20,7 @@ class BaseCursor:
             if vIndex > 0:
                 cursor.execute('update %s set VIRTUAL_SHARD = %d where id = %d' % 
                                (tableName, vIndex, insertid) )
-                print 'setting virtual shard to %d' % vIndex
+                #print 'setting virtual shard to %d' % vIndex
         cursor.close ()
         db.commit()
         db.close ()
@@ -101,7 +101,13 @@ class ShardCursor(BaseCursor):
     
     def __init__(self, session, shardkey):
         BaseCursor.__init__(self, session)
-        self._shard, self._idx = session.getShardForQuery(shardkey)
+        
+        # allows construction of class using explicit virtual shard id
+        if isinstance(shardkey,int):
+            self._shard = session.getShardByVirtualId(shardkey)
+            self._idx = shardkey
+        else:
+            self._shard, self._idx = session.getShardForQuery(shardkey)
         
     def insert(self, sql, args=None):
         #Should never be implemented
@@ -186,7 +192,8 @@ class ShardCursor(BaseCursor):
             db.close ()
             shard = shard.next
         return total
-        
+  
+      
 class AllCursor(ShardCursor):
 
     def __init__(self, session):
