@@ -13,14 +13,14 @@ class ShardConf(models.Model):
     database = models.CharField(null=True,max_length=100)
     def __str__(self):
         return self.host 
-    def notifyFull(self, full):
+    def notifyFull(self, shard, full):
         if self.full and full == False:
             self.full = full
             self.save()
         elif self.full == False and full:
             self.full = full
             self.save()
-    def notifyShardSize(self, size):
+    def notifyShardSize(self, shard, size):
         if self.current_MB != size:
             self.current_MB = size
             self.save()
