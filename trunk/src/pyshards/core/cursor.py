@@ -65,8 +65,9 @@ class AdminCursor(BaseCursor):
                     out the warning (see below).  I had no such luck.  For now, this is unresolved 
                     and remains a TODO. 
                     warnings.filterwarnings("ignore", "Unknown table.*")
+                    '''
                     print 'TODO - fix or find better workaround for "unknown table" issue in MySQLdb'
-                    ''' 
+                    print 'unknown exception during execute'
 
                 shard = shard.next
                 

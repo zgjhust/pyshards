@@ -13,9 +13,9 @@ def createTestShards(IPs, username, password):
         for x in range(1,4):
             s = ShardConf()
             s.id = shardId = shardId + 1
-            s.capacity_MB = 100
+            s.capacity_MB = 500
             s.current_MB = 0
-            s.database = 'testshard%d' % x
+            s.database = 'shard%d' % x
             s.full = False
             s.user = username 
             s.password = password 
@@ -61,9 +61,10 @@ def demoSetup():
            '192.168.0.206',
            '192.168.0.207')
     createTestShards( ips, 'root', 'xx' )
-    createTestSchemas()
-    createVirtualShards(100)
+    #createTestSchemas()
+    #createVirtualShards(100)
             
 if __name__ == '__main__':
     #demoSetup()
     createVirtualShards(50)
+    #demoSetup()

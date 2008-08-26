@@ -23,7 +23,7 @@ class Shard:
         self.__full = full
         if self.observers != None:
             for o in self.observers:
-                o.notifyFull(full)
+                o.notifyFull(self, full)
 
     def full(self):
         return self.__full
@@ -129,5 +129,5 @@ class Shard:
                self.setFull(False)
            if self.observers != None:
                for o in self.observers:
-                   o.notifyShardSize(size)
+                   o.notifyShardSize(self, size)
         cursor.close ()
