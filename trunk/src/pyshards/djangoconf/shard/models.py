@@ -7,6 +7,7 @@ class ShardConf(models.Model):
     capacity_MB = models.IntegerField(null=True, blank=True)
     current_MB = models.IntegerField(null=True, blank=True)
     full = models.BooleanField(null=True)
+    initialized = models.BooleanField(null=True)
     user = models.CharField(null=True,max_length=100)
     password = models.CharField(null=True,max_length=100)
     host = models.CharField(null=True,max_length=100)
@@ -23,6 +24,10 @@ class ShardConf(models.Model):
     def notifyShardSize(self, shard, size):
         if self.current_MB != size:
             self.current_MB = size
+            self.save()
+    def notifyInitialized(self ):
+        if self.initialized != initialized:
+            self.initialized =initialized 
             self.save()
     class Meta:
         db_table = 'shard'

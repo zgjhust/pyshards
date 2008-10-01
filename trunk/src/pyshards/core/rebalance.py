@@ -91,6 +91,6 @@ if __name__ == '__main__':
     sc.save()
     
     sh = Shard(sc.id, sc.user, sc.password, sc.host, sc.database, 
-                   sc.capacity_MB, sc.full, (sc,))
+                   sc.capacity_MB, sc.full, sc.initialized, (sc,))
 
     rebalanceShardBucket(session.shards[0], sh, (1,19))
