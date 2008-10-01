@@ -3,7 +3,7 @@ import MySQLdb
 import pooling
 
 class Shard:
-    def __init__(self, id, user, password, host, database, capacity_MB, current_MB, full, observers = None ):
+    def __init__(self, id, user, password, host, database, capacity_MB, current_MB, full, initialized, observers = None ):
         self.id = id 
         self.user = user
         self.password = password
@@ -16,8 +16,10 @@ class Shard:
         self.observers = observers
         # size check is performance overhead, so we only check periodically
         self.sizeCheckCnt = 0
-        self.SIZE_CHECK_INTERVAL = 1000
-        self.nextInitialized = False
+        #lower considerably for testing
+        self.SIZE_CHECK_INTERVAL = 100
+        #self.SIZE_CHECK_INTERVAL = 1000
+        self.nextInitialized = initialized
 
     def setFull(self, full):
         self.__full = full
@@ -72,6 +74,9 @@ class Shard:
         cursor.close()
         connection.close()
         self.nextInitialized = True;
+        if self.observers != None:
+            for o in self.observers:
+                o.notifyInitialized(self)
         
     # Creates a connection proxy for this shard from a pool of connections.  
     
@@ -91,8 +96,8 @@ class Shard:
         
         if (self.sizeCheckCnt == 0 or self.sizeCheckCnt > self.SIZE_CHECK_INTERVAL):
             self.__checkDBSize(connection)
-        else:
-            self.sizeCheckCnt = self.sizeCheckCnt + 1
+        
+        self.sizeCheckCnt = self.sizeCheckCnt + 1
         
         return connection
     

@@ -13,7 +13,7 @@ def DjangoShardLoader():
     for sc in shardConfs:
         print sc
         sh = Shard(sc.id, sc.user, sc.password, sc.host, sc.database, 
-                   sc.capacity_MB, sc.current_MB, sc.full, (sc,))
+                   sc.capacity_MB, sc.current_MB, sc.full, sc.initialized, (sc,))
         if sc.pid == None:
             topshards[sh.id] = sh
         else:
