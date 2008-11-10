@@ -99,4 +99,4 @@ The first time you run either test_sizecheck.py or test_virtual.py, you'll see a
 
 
 
-Are we done? No. Stay tuned for more instructions...
+More info may be added later, depending on community interest.
