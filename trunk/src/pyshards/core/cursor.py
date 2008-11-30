@@ -54,8 +54,9 @@ class AdminCursor(BaseCursor):
                         shard = shard.next
                         continue
                 
-                try:
-                    self._execute(shard, sql, args, False, useDB)
+                self._execute(shard, sql, args, False, useDB)
+                
+                """
                  
                 except:
                     '''
@@ -68,6 +69,7 @@ class AdminCursor(BaseCursor):
                     '''
                     print 'TODO - fix or find better workaround for "unknown table" issue in MySQLdb'
                     print 'unknown exception during execute'
+                """
 
                 shard = shard.next
                 
