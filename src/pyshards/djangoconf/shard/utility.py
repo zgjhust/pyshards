@@ -47,7 +47,6 @@ def createVirtualShards(numOfVShards):
     numOfShards = len(pshards)
     vPerShard = numOfVShards/numOfShards
     # make zero indexed
-    vPerShard = vPerShard - 1
     vShardId = 0
     for sh in pshards:
         for x in range(0, vPerShard):
@@ -65,6 +64,6 @@ def demoSetup():
     #createVirtualShards(100)
             
 if __name__ == '__main__':
-    #demoSetup()
-    createVirtualShards(50)
+    demoSetup()
+    createVirtualShards(200)
     #demoSetup()
