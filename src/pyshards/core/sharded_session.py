@@ -43,9 +43,9 @@ class ShardedSession:
         
         if self.vshards != None:
             idx = shardkey.__hash__() % len(self.vshards) + 1
-            print 'idx %d' % idx
+            #print 'idx %d' % idx
             vshardval = self.vshards[idx]
-            print "vshardval %d" % vshardval 
+            #print "vshardval %d" % vshardval 
             shard = self.shardsMap[vshardval]
         else:
             idx = shardkey.__hash__() % len(self.shards)
@@ -57,11 +57,14 @@ class ShardedSession:
     
             while shard.full() and shard.next != None:
                 shard = shard.getNextForWrite()
-                    
+        
+        """            
         print 'shard bucket #%d, shard IP (%s), shard ID (%d), shard DB (%s)' % (idx, 
                                                                   shard.host,
                                                                   shard.id,
                                                                   shard.database)
+        """
+        
         return shard, idx 
             
         
