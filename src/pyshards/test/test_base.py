@@ -2,8 +2,8 @@
 import unittest
 import string, random
 from core.sharded_session import ShardedSession
-from djangoconf.shard import django_standalone_helper 
-from djangoconf.loader import DjangoShardLoader
+from pyshards.djangoconf.shard import django_standalone_helper 
+from pyshards.djangoconf.loader import DjangoShardLoader
 import warnings
 import pickle
 

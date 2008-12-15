@@ -1,7 +1,7 @@
 # Copyright (C) 2008 Devin Venable 
 import unittest
 import string, random
-from djangoconf.shard import django_standalone_helper 
+from pyshards.djangoconf.shard import django_standalone_helper 
 from pyshards.core.sharded_session import ShardedSession
 from pyshards.core.sharded_session import ShardCursor
 from test_base import TestBase 

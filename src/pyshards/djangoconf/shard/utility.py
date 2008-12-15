@@ -1,7 +1,7 @@
 # Copyright (C) 2008 Devin Venable 
 import django_standalone_helper
-from djangoconf.shard.models import *
-from djangoconf.loader import *
+from pyshards.djangoconf.shard.models import *
+from pyshards.djangoconf.loader import *
 from core.sharded_session import *
 
 def createTestShards(IPs, username, password):

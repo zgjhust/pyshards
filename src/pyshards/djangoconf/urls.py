@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from djangoconf.shard.views import *
+from pyshards.djangoconf.shard.views import *
 from django.contrib import admin
 admin.autodiscover()
 
