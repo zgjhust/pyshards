@@ -1,7 +1,7 @@
 # Create your views here.
 from django.shortcuts import render_to_response
 from django.core import serializers
-from djangoconf.shard.models import *
+from pyshards.djangoconf.shard.models import *
 from django.http import HttpResponse, HttpResponseServerError
  
 from djangoconf.loader import DjangoShardLoader 
