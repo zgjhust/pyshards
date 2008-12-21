@@ -1,8 +1,7 @@
 #summary All about Pyshards
 
 ===Work-In-Progress===
-Pyshards is a pre-beta work-in-progress.  If you are reading this and you are a developer with an interest in distributed-database schemes, search research, building high-volume web sites, sharding, python and mysql, then please post a message indicating your interest.  I'd love to see others get involved.
--Devin
+Pyshards is essentially a personal research project. If you have an interest in distributed-database schemes, search research, building high-volume web sites, sharding, python and mysql and would like to get involved with this project, then please post a message indicating your interest.
 
 ===Why are you doing this?===
 I've been interested in sharding concepts since first hearing the term "shard" a few years back.  My interest had been piqued earlier, the first time I read about Google's original approach to distributed search.  It was described as a hashtable-like system in which independent physical machines play the role of the buckets.  More recently, I needed the capacity and performance of a Sharded system, but did not find helpful libraries or toolkits which would assist with the configuration for my language of preference these days, which is Python.  And, since I had a few weeks on my hands, I decided I would begin the work of creating these tools.
@@ -36,5 +35,3 @@ As it is early in the lifetime of this project, these terms are subject to chang
 ===Why MySQL?==
 
 MySQL is easy to use and its fast.  I find it easiest to pick a set of technologies and work with them initially rather than putting everything behind generic interfaces.  If we want to add support for other dbs later (postgresql) it will not be difficult.  Injecting interfaces is quite a bit easier to do after the fact in Python than it is in most compiled languages.  Feel strongly that we should use postgresql?  Post a comment and we'll weigh the pros and cons.
-
-Are we done? No. Stay tuned for more info...
