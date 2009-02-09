@@ -41,7 +41,7 @@ class VShardConf(models.Model):
     id = models.IntegerField(primary_key=True)
     pid = models.IntegerField(null=True, blank=True)
     def __str__(self):
-        return self.id
+        return '%d-->%d' % (self.id, self.pid)
     class Meta:
         db_table = 'vshard'
     class Admin:
