@@ -1,10 +1,13 @@
 #summary All about Pyshards
 
-===Work-In-Progress===
-Pyshards is essentially a personal research project. If you have an interest in distributed-database schemes, search research, building high-volume web sites, sharding, python and mysql and would like to get involved with this project, then please post a message indicating your interest.
+===Project Status===
+No longer active.
 
-===Why are you doing this?===
-I've been interested in sharding concepts since first hearing the term "shard" a few years back.  My interest had been piqued earlier, the first time I read about Google's original approach to distributed search.  It was described as a hashtable-like system in which independent physical machines play the role of the buckets.  More recently, I needed the capacity and performance of a Sharded system, but did not find helpful libraries or toolkits which would assist with the configuration for my language of preference these days, which is Python.  And, since I had a few weeks on my hands, I decided I would begin the work of creating these tools.
+===Research===
+Pyshards was essentially a personal research project as well as the foundation for a sharding system I developed for a startup company. 
+
+===Why did you do this?===
+I had been interested in sharding concepts since first hearing the term "shard" a few years back.  My interest was first piqued when reading about Google's original approach to distributed search, described as a hashtable-like system in which independent physical machines play the role of the buckets.  More recently, I needed the capacity and performance of a Sharded system, but did not find helpful libraries or toolkits which would assist with the configuration for my language of preference these days, which is Python.  And, since I had a few weeks on my hands, I decided to begin the work of creating these tools.
 
 ===Inspiration===
 I found a lot of inspiration and good information about sharding on http://highscalability.com. Much has also been written about horizontal partitioning on the MySQL site, where I found articles by Robin Schumacher and a good paper entitled MySQL Scale-Out by application partitioning by Oli Sennhauser.  Another source of information: MySQL Clustering by Alex Davies and Harrison Fisk.  Finally, I drew inspiration from Max Ross' Hibernate Shards project, especially the idea of virtual shards.  
